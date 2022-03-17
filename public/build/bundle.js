@@ -396,23 +396,23 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Download JSON File";
     			attr_dev(h1, "class", "svelte-1g0g47a");
-    			add_location(h1, file, 82, 1, 1732);
+    			add_location(h1, file, 85, 1, 1825);
     			attr_dev(label0, "for", "formID");
     			attr_dev(label0, "class", "svelte-1g0g47a");
-    			add_location(label0, file, 83, 1, 1772);
+    			add_location(label0, file, 86, 1, 1865);
     			attr_dev(input, "id", "formID");
     			attr_dev(input, "placeholder", "eg: 02_wp_up_30");
-    			add_location(input, file, 83, 43, 1814);
+    			add_location(input, file, 86, 43, 1907);
     			attr_dev(label1, "for", "formID");
     			attr_dev(label1, "class", "svelte-1g0g47a");
-    			add_location(label1, file, 85, 1, 1884);
+    			add_location(label1, file, 88, 1, 1977);
     			textarea.value = /*jsonText*/ ctx[1];
     			attr_dev(textarea, "rows", "20");
     			attr_dev(textarea, "class", "jsonTextArea svelte-1g0g47a");
-    			add_location(textarea, file, 86, 1, 1925);
-    			add_location(button, file, 88, 1, 2023);
+    			add_location(textarea, file, 89, 1, 2018);
+    			add_location(button, file, 91, 1, 2116);
     			attr_dev(main, "class", "svelte-1g0g47a");
-    			add_location(main, file, 81, 0, 1724);
+    			add_location(main, file, 84, 0, 1817);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -480,6 +480,39 @@ var app = (function () {
     	document.body.removeChild(element);
     }
 
+    function findImageHash(data1, parent) {
+    	// var newElement;
+    	// console.log(data1);
+    	if (data1.type == "GROUP") {
+    		alert("There is a group element, remove it");
+    	}
+
+    	if (data1.hasOwnProperty('fills')) {
+    		// console.log(data1.fills);
+    		if (data1.fills.hasOwnProperty('0')) {
+    			if (data1.fills[0].hasOwnProperty('imageHash')) {
+    				let image_id = data1.name;
+
+    				//modify gloval jsonData
+    				data1.fills[0].imageHash = "https://images.unsplash.com/" + image_id; /*+ "&auto=format&fit=crop&w=1080&q=80" */
+    			}
+    		}
+    	}
+
+    	var child = data1;
+
+    	if (data1.hasOwnProperty('children')) {
+    		Object.keys(data1.children).forEach(function (key) {
+    			findImageHash(data1.children[key]);
+    		}); // if(!child){
+    		// 	return false;
+    		// }else{
+    		// 	return data1;
+    	} // }
+
+    	return child;
+    } //eof
+
     function instance($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('App', slots, []);
@@ -487,40 +520,7 @@ var app = (function () {
     	name = '';
     	let jsonText = '';
     	let jsonData;
-
-    	function findImageHash(data1, parent) {
-    		// var newElement;
-    		// console.log(data1);
-    		if (data1.type == "GROUP") {
-    			alert("There is a group element, remove it");
-    		}
-
-    		if (data1.hasOwnProperty('fills')) {
-    			// console.log(data1.fills);
-    			if (data1.fills.hasOwnProperty('0')) {
-    				if (data1.fills[0].hasOwnProperty('imageHash')) {
-    					let image_id = data1.name;
-
-    					//modify gloval jsonData
-    					jsonData.fills[0].imageHash = "https://images.unsplash.com/" + image_id; /*+ "&auto=format&fit=crop&w=1080&q=80" */
-    				}
-    			}
-    		}
-
-    		var child = false;
-
-    		if (data1.hasOwnProperty('children')) {
-    			Object.keys(data1.children).forEach(function (key) {
-    				findImageHash(data1.children[key]);
-
-    				{
-    					return false;
-    				}
-    			});
-    		}
-
-    		return child;
-    	} //eof
+    	var keyTracking = 0;
 
     	function jsonOnChange(e) {
     		// console.log(findPath(e.target.value, "imageHash"));
@@ -528,9 +528,9 @@ var app = (function () {
 
     		let jsonTextObj = JSON.parse(jsonText);
     		jsonData = jsonTextObj;
-    		findImageHash(jsonTextObj);
-    		console.log(jsonData);
-    		$$invalidate(1, jsonText = JSON.stringify(jsonData, null, 2));
+    		var modified_json = findImageHash(jsonTextObj);
+    		console.log(modified_json);
+    		$$invalidate(1, jsonText = JSON.stringify(modified_json, null, 2));
     	} // download(name + ".json", jsonText);
     	// jsonText = "-------------";
 
@@ -557,6 +557,7 @@ var app = (function () {
     		name,
     		jsonText,
     		jsonData,
+    		keyTracking,
     		download,
     		findImageHash,
     		jsonOnChange,
@@ -567,6 +568,7 @@ var app = (function () {
     		if ('name' in $$props) $$invalidate(0, name = $$props.name);
     		if ('jsonText' in $$props) $$invalidate(1, jsonText = $$props.jsonText);
     		if ('jsonData' in $$props) jsonData = $$props.jsonData;
+    		if ('keyTracking' in $$props) keyTracking = $$props.keyTracking;
     	};
 
     	if ($$props && "$$inject" in $$props) {

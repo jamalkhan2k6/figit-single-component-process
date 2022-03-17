@@ -67,10 +67,10 @@ function jsonOnChange(e){
 
 	let jsonTextObj = JSON.parse(jsonText);
 	jsonData = jsonTextObj;
-	findImageHash(jsonTextObj, jsonTextObj);
-	console.log(jsonData);
+	var modified_json = findImageHash(jsonTextObj, jsonTextObj);
+	console.log(modified_json);
 
-	jsonText = JSON.stringify(jsonData, null, 2);
+	jsonText = JSON.stringify(modified_json, null, 2);
 	// download(name + ".json", jsonText);
 	// jsonText = "-------------";
 }
