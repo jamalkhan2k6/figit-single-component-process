@@ -3,6 +3,7 @@
 	name = '';
 	let jsonText = '';
 	let jsonData;
+	var keyTracking = 0;
 
 
 function download(filename, text) {
@@ -20,6 +21,7 @@ function download(filename, text) {
 function findImageHash(data1, parent){
 	// var newElement;
 	// console.log(data1);
+	
 
 	if(data1.type == "GROUP"){
 		alert("There is a group element, remove it");
@@ -31,20 +33,21 @@ function findImageHash(data1, parent){
 			if(data1.fills[0].hasOwnProperty('imageHash')){
 				let image_id = data1.name;
 				//modify gloval jsonData
-				jsonData.fills[0].imageHash = "https://images.unsplash.com/" + image_id /*+ "&auto=format&fit=crop&w=1080&q=80" */;
+				data1.fills[0].imageHash = "https://images.unsplash.com/" + image_id /*+ "&auto=format&fit=crop&w=1080&q=80" */;
 			}
 		}
 	}
 
-	var child = false;
-
+	var child = data1;
     if(data1.hasOwnProperty('children')){
         Object.keys(data1.children).forEach(function(key) {
             var child = findImageHash(data1.children[key], data1);
 
-            if(!child){
-				return false;
-            }
+            // if(!child){
+			// 	return false;
+            // }else{
+			// 	return data1;
+			// }
 
         });
     }
