@@ -401,24 +401,24 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Download JSON File";
     			attr_dev(h1, "class", "svelte-t3lmt3");
-    			add_location(h1, file, 94, 2, 2561);
+    			add_location(h1, file, 93, 2, 2545);
     			attr_dev(label0, "for", "formID");
     			attr_dev(label0, "class", "svelte-t3lmt3");
-    			add_location(label0, file, 95, 2, 2603);
+    			add_location(label0, file, 94, 2, 2587);
     			attr_dev(input, "id", "formID");
     			attr_dev(input, "placeholder", "eg: 02_wp_up_30");
-    			add_location(input, file, 95, 44, 2645);
+    			add_location(input, file, 94, 44, 2629);
     			attr_dev(label1, "for", "formID");
     			attr_dev(label1, "class", "svelte-t3lmt3");
-    			add_location(label1, file, 101, 2, 2738);
+    			add_location(label1, file, 100, 2, 2722);
     			textarea.value = /*jsonText*/ ctx[1];
     			attr_dev(textarea, "rows", "20");
     			attr_dev(textarea, "class", "jsonTextArea svelte-t3lmt3");
-    			add_location(textarea, file, 102, 2, 2781);
-    			add_location(button0, file, 109, 2, 2895);
-    			add_location(button1, file, 111, 2, 2957);
+    			add_location(textarea, file, 101, 2, 2765);
+    			add_location(button0, file, 108, 2, 2879);
+    			add_location(button1, file, 110, 2, 2941);
     			attr_dev(main, "class", "svelte-t3lmt3");
-    			add_location(main, file, 93, 0, 2551);
+    			add_location(main, file, 92, 0, 2535);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -503,7 +503,7 @@ var app = (function () {
     				let image_id = data1.name;
 
     				//modify gloval jsonData
-    				data1.fills[0].imageHash = "https://images.unsplash.com/" + image_id; /*+ "&auto=format&fit=crop&w=1080&q=80" */
+    				data1.fills[0].imageHash = "https://images.unsplash.com/" + image_id + "&auto=format&fit=crop&w=1080&q=80";
     			}
     		}
     	}
@@ -530,7 +530,7 @@ var app = (function () {
     	let jsonText = "";
     	let jsonData;
     	var keyTracking = 0;
-    	console.log("working changes");
+    	console.log("working changes 2");
 
     	function jsonOnChange(e) {
     		$$invalidate(1, jsonText = e.target.value.trim().replace(/^\[([\s\S]*)]$/, "$1"));
