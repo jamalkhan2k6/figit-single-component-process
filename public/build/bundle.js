@@ -503,7 +503,7 @@ var app = (function () {
     				let image_id = data1.name;
 
     				//modify gloval jsonData
-    				data1.fills[0].imageHash = "https://images.unsplash.com/" + image_id + "&auto=format&fit=crop&w=1080&q=80";
+    				data1.fills[0].imageHash = "https://images.unsplash.com/" + image_id + "?auto=format&fit=crop&w=1080&q=80";
     			}
     		}
     	}
