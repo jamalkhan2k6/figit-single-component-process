@@ -40,6 +40,20 @@
       }
     }
 
+    if (data1.hasOwnProperty("backgrounds")) {
+      // console.log(data1.fills);
+      if (data1.backgrounds.hasOwnProperty("0")) {
+        if (data1.backgrounds[0].hasOwnProperty("imageHash")) {
+          let image_id = data1.name;
+          //modify gloval jsonData
+          data1.backgrounds[0].imageHash =
+            "https://images.unsplash.com/" + image_id + "?auto=format&fit=crop&w=1080&q=80";
+        }
+      }
+    }
+
+
+
     var child = data1;
     if (data1.hasOwnProperty("children")) {
       Object.keys(data1.children).forEach(function (key) {

@@ -401,24 +401,24 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Download JSON File";
     			attr_dev(h1, "class", "svelte-t3lmt3");
-    			add_location(h1, file, 93, 2, 2545);
+    			add_location(h1, file, 107, 2, 2991);
     			attr_dev(label0, "for", "formID");
     			attr_dev(label0, "class", "svelte-t3lmt3");
-    			add_location(label0, file, 94, 2, 2587);
+    			add_location(label0, file, 108, 2, 3033);
     			attr_dev(input, "id", "formID");
     			attr_dev(input, "placeholder", "eg: 02_wp_up_30");
-    			add_location(input, file, 94, 44, 2629);
+    			add_location(input, file, 108, 44, 3075);
     			attr_dev(label1, "for", "formID");
     			attr_dev(label1, "class", "svelte-t3lmt3");
-    			add_location(label1, file, 100, 2, 2722);
+    			add_location(label1, file, 114, 2, 3168);
     			textarea.value = /*jsonText*/ ctx[1];
     			attr_dev(textarea, "rows", "20");
     			attr_dev(textarea, "class", "jsonTextArea svelte-t3lmt3");
-    			add_location(textarea, file, 101, 2, 2765);
-    			add_location(button0, file, 108, 2, 2879);
-    			add_location(button1, file, 110, 2, 2941);
+    			add_location(textarea, file, 115, 2, 3211);
+    			add_location(button0, file, 122, 2, 3325);
+    			add_location(button1, file, 124, 2, 3387);
     			attr_dev(main, "class", "svelte-t3lmt3");
-    			add_location(main, file, 92, 0, 2535);
+    			add_location(main, file, 106, 0, 2981);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -504,6 +504,18 @@ var app = (function () {
 
     				//modify gloval jsonData
     				data1.fills[0].imageHash = "https://images.unsplash.com/" + image_id + "?auto=format&fit=crop&w=1080&q=80";
+    			}
+    		}
+    	}
+
+    	if (data1.hasOwnProperty("backgrounds")) {
+    		// console.log(data1.fills);
+    		if (data1.backgrounds.hasOwnProperty("0")) {
+    			if (data1.backgrounds[0].hasOwnProperty("imageHash")) {
+    				let image_id = data1.name;
+
+    				//modify gloval jsonData
+    				data1.backgrounds[0].imageHash = "https://images.unsplash.com/" + image_id + "?auto=format&fit=crop&w=1080&q=80";
     			}
     		}
     	}
